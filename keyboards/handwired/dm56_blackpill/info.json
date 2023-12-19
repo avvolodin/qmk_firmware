@@ -1,8 +1,8 @@
 {
   "keyboard_name": "dm56_blackpill",
   "manufacturer": "ave",
-  "url": "",
-  "maintainer": "",
+  "url": "https://",
+  "maintainer": "avvv",
   "usb": {
     "vid": "0x444D",
     "pid": "0x3539",
