@@ -96,10 +96,12 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
+    rgblight_enable_noeeprom();
+    rgblight_sethsv_noeeprom(255, 255, 255);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
 }
 
 bool led_update_user(led_t led_state) {
-    writePin(C13, !led_state.caps_lock);
     rgblight_set_layer_state(3, led_state.caps_lock);
     return true;
 }
