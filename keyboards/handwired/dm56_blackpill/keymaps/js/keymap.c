@@ -27,6 +27,7 @@ void keyboard_post_init_user(void) {
 }
 
 bool led_update_user(led_t led_state) {
+    writePin(C13, !led_state.caps_lock);
     rgblight_set_layer_state(3, led_state.caps_lock);
     return true;
 }
