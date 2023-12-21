@@ -96,9 +96,9 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
-    rgblight_enable_noeeprom();
-    rgblight_sethsv_noeeprom(255, 255, 255);
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
+    //rgblight_enable_noeeprom();
+    //rgblight_sethsv_noeeprom(255, 255, 255);
+    //rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
 }
 
 bool led_update_user(led_t led_state) {
@@ -112,7 +112,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     //
     //}
     rgblight_set_layer_state(3, leds.caps_lock);
-    //rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
     rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
     rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
     /*
@@ -129,7 +129,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    //rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
     rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
     rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
 
