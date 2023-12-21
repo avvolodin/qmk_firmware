@@ -27,7 +27,7 @@ void keyboard_post_init_user(void) {
 }
 
 bool led_update_user(led_t led_state) {
-    //rgblight_set_layer_state(3, led_state.caps_lock);
+    rgblight_set_layer_state(3, led_state.caps_lock);
     return true;
 }
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -36,26 +36,26 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     //    rgblight_set_layer_state(3, led_state.caps_lock);
     //
     //}
-    //rgblight_set_layer_state(3, led_state.caps_lock);
-    //rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
-    //rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
-    //rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
-
+    rgblight_set_layer_state(3, led_state.caps_lock);
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
+/*
     rgblight_sethsv_at(HSV_WHITE, 0); // led 0
     rgblight_sethsv_at(HSV_RED,   1); // led 1
     rgblight_sethsv_at(HSV_GREEN, 2); // led 2
     rgblight_sethsv_at(HSV_YELLOW, 7); // led 0
     rgblight_sethsv_at(HSV_BLUE,   8); // led 1
     rgblight_sethsv_at(HSV_GREEN, 9); // led 2
-
+*/
 
     return state;
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    //rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
-    //rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
-    //rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
 
     return state;
 }
