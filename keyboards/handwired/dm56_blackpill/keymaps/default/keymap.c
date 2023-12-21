@@ -90,7 +90,7 @@ const rgblight_segment_t PROGMEM my_dvk_layer[]    = RGBLIGHT_LAYER_SEGMENTS({0,
 const rgblight_segment_t PROGMEM my_cps_layer[]    = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_GREEN});
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    my_qwe_layer, my_gme_layer, my_dvk_layer, my_cps.layer
+    my_qwe_layer, my_gme_layer, my_dvk_layer, my_cps_layer
 );
 
 void keyboard_post_init_user(void) {
@@ -104,12 +104,12 @@ bool led_update_user(led_t led_state) {
     return true;
 }
 layer_state_t layer_state_set_user(layer_state_t state) {
-    //led_t leds = host_keyboard_led_state();
+    led_t leds = host_keyboard_led_state();
     //if(leds.caps_lock){
     //    rgblight_set_layer_state(3, led_state.caps_lock);
     //
     //}
-    rgblight_set_layer_state(3, led_state.caps_lock);
+    rgblight_set_layer_state(3, leds.caps_lock);
     rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
     rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
     rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
