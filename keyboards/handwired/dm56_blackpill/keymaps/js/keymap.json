@@ -42,6 +42,7 @@
       "KC_NO",   "KC_NO",  "KC_NO",  "KC_NO",  "KC_NO",  "KC_NO",                                                      "KC_NO",  "KC_VOLD","KC_MUTE", "KC_VOLU", "KC_NO",   "KC_NO",
       "KC_NO",   "KC_NO",  "KC_NO",  "KC_NO",  "KC_NO",  "KC_NO",                                                      "KC_NO",  "KC_NO",  "KC_NO",   "KC_NO",   "KC_NO",   "KC_NO",
                            "KC_LGUI","KC_LALT",                                                                                            "KC_RALT", "KC_RGUI",
+                                               "KC_TRNS","KC_TRNS",                                                    "KC_TRNS","KC_TRNS",
                                                                    "KC_TRNS",  "KC_TRNS",       "KC_TRNS",   "KC_TRNS",
                                                                    "KC_TRNS",  "KC_TRNS",       "KC_TRNS",   "KC_TRNS"
     ],
@@ -60,7 +61,8 @@
       "KC_GRV",  "KC_QUOT","KC_COMM","KC_DOT", "KC_P",   "KC_Y",                                                       "KC_F",   "KC_G",   "KC_C",   "KC_R",   "KC_L",   "KC_LBRC",
       "KC_TAB",  "KC_A",   "KC_O",   "KC_E",   "KC_U",   "KC_I",                                                       "KC_D",   "KC_H",   "KC_T",   "KC_N",   "KC_S",   "KC_QUOT",
       "KC_LSFT", "KC_SCLN","KC_Q",   "KC_J",   "KC_K",   "KC_X",                                                       "KC_B",   "KC_M",   "KC_W",   "KC_V",   "KC_Z",   "KC_RSFT",
-                           "KC_LGUI","KC_LALT",                                                                                            "KC_RALT", "KC_RGUI",
+                           "KC_TRNS","KC_TRNS",                                                                                            "KC_TRNS","KC_TRNS",
+                                               "KC_LGUI","KC_LALT",                                                    "KC_RALT", "KC_RGUI",
                                                                    "KC_ENT",  "KC_SPC",       "KC_ENT",  "KC_SPC",
                                                                    "KC_LSFT", "KC_ESC",       "KC_ESC",  "KC_RSFT"
     ]
