@@ -104,12 +104,12 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     my_dvorak_layer
 );
 
-enum led_layers {
-    _DEF = 0,
-    _CPS,
-    _GME
-    _DVK
-};
+//enum led_layers {
+//    _DEF = 0,
+//    _CPS,
+//    _GME
+//    _DVK
+//};
 
 void keyboard_post_init_user(void) {
     // Enable the LED layers
