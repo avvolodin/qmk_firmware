@@ -12,24 +12,13 @@ enum layer_names {
     _DVK
 };
 
-const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {7, 3, HSV_RED}
-);
-const rgblight_segment_t PROGMEM my_dvorak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {7, 3, HSV_GREEN}
-);
+const rgblight_segment_t PROGMEM my_qwe_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_PURPLE});
+const rgblight_segment_t PROGMEM my_gme_layer[]    = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_CYAN});
+const rgblight_segment_t PROGMEM my_dvk_layer[]    = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_RED});
+const rgblight_segment_t PROGMEM my_cps_layer[]    = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_GREEN});
 
-const rgblight_segment_t PROGMEM my_gme_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {7, 3, HSV_PURPLE}
-);
-//const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//    {13, 2, HSV_GREEN}
-//);
-// Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    my_capslock_layer,
-    my_gme_layer,
-    my_dvorak_layer
+    my_qwe_layer, my_gme_layer, my_dvk_layer, my_cps.layer
 );
 
 void keyboard_post_init_user(void) {
@@ -38,11 +27,26 @@ void keyboard_post_init_user(void) {
 }
 
 bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(0, led_state.caps_lock);
+    rgblight_set_layer_state(3, led_state.caps_lock);
     return true;
+}
+layer_state_t layer_state_set_user(layer_state_t state) {
+    //led_t leds = host_keyboard_led_state();
+    //if(leds.caps_lock){
+    //    rgblight_set_layer_state(3, led_state.caps_lock);
+    //
+    //}
+    //rgblight_set_layer_state(3, led_state.caps_lock);
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
+    return state;
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
     rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
+
     return state;
 }
