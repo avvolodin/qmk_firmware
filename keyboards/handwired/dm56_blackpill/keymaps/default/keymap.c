@@ -125,11 +125,20 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
     uint8_t layer = get_highest_layer(state);
     switch (layer) {
         case _QW:
-        case _LFT:
-        case _RGT:
-        case _BTH:
             rgblight_sethsv_noeeprom(HSV_BLUE);
             rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD + 0);
+            break;
+        case _LFT:
+            rgblight_sethsv_noeeprom(HSV_BLUE);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD + 1);
+            break;
+        case _RGT:
+            rgblight_sethsv_noeeprom(HSV_BLUE);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD + 2);
+            break;
+        case _BTH:
+            rgblight_sethsv_noeeprom(HSV_BLUE);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD + 3);
             break;
         case _GME:
             rgblight_sethsv_noeeprom(HSV_RED);
