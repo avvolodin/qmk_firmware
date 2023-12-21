@@ -83,6 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         )
 };
 
+
 const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
     {7, 3, HSV_RED}
 );
@@ -103,6 +104,13 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     my_dvorak_layer
 );
 
+enum led_layers {
+    _DEF = 0,
+    _CPS,
+    _GME
+    _DVK
+};
+
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
@@ -114,6 +122,24 @@ bool led_update_user(led_t led_state) {
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
+    uint8_t layer = get_highest_layer(state);
+    switch (layer) {
+        case _QW:
+        case _LFT:
+        case _RGT:
+        case _BTH:
+            rgblight_sethsv_noeeprom(HSV_BLUE);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD + 0);
+            break;
+        case _GME:
+            rgblight_sethsv_noeeprom(HSV_RED);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING + 3);
+            break;
+        case _DVK:
+            rgblight_sethsv_noeeprom(HSV_GREEN);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_KNIGHT + 2);
+            break;
+    }
+    //rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
     return state;
 }
