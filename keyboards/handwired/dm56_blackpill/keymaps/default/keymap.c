@@ -84,32 +84,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 
-const rgblight_segment_t PROGMEM my_capslock_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {7, 3, HSV_RED}
-);
-const rgblight_segment_t PROGMEM my_dvorak_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {7, 3, HSV_GREEN}
-);
+const rgblight_segment_t PROGMEM my_qwe_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_PURPLE});
+const rgblight_segment_t PROGMEM my_gme_layer[]    = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_CYAN});
+const rgblight_segment_t PROGMEM my_dvk_layer[]    = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_RED});
+const rgblight_segment_t PROGMEM my_cps_layer[]    = RGBLIGHT_LAYER_SEGMENTS({0, RGBLED_NUM, HSV_GREEN});
 
-const rgblight_segment_t PROGMEM my_gme_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {7, 3, HSV_PURPLE}
-);
-//const rgblight_segment_t PROGMEM my_layer3_layer[] = RGBLIGHT_LAYER_SEGMENTS(
-//    {13, 2, HSV_GREEN}
-//);
-// Now define the array of layers. Later layers take precedence
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
-    my_capslock_layer,
-    my_gme_layer,
-    my_dvorak_layer
+    my_qwe_layer, my_gme_layer, my_dvk_layer, my_cps.layer
 );
-
-//enum led_layers {
-//    _DEF = 0,
-//    _CPS,
-//    _GME
-//    _DVK
-//};
 
 void keyboard_post_init_user(void) {
     // Enable the LED layers
@@ -117,40 +99,37 @@ void keyboard_post_init_user(void) {
 }
 
 bool led_update_user(led_t led_state) {
-    rgblight_set_layer_state(0, led_state.caps_lock);
+    writePin(C13, !led_state.caps_lock);
+    rgblight_set_layer_state(3, led_state.caps_lock);
     return true;
 }
+layer_state_t layer_state_set_user(layer_state_t state) {
+    //led_t leds = host_keyboard_led_state();
+    //if(leds.caps_lock){
+    //    rgblight_set_layer_state(3, led_state.caps_lock);
+    //
+    //}
+    rgblight_set_layer_state(3, led_state.caps_lock);
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
+    /*
+        rgblight_sethsv_at(HSV_WHITE, 0); // led 0
+        rgblight_sethsv_at(HSV_RED,   1); // led 1
+        rgblight_sethsv_at(HSV_GREEN, 2); // led 2
+        rgblight_sethsv_at(HSV_YELLOW, 7); // led 0
+        rgblight_sethsv_at(HSV_BLUE,   8); // led 1
+        rgblight_sethsv_at(HSV_GREEN, 9); // led 2
+    */
+
+    return state;
+}
+
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    uint8_t layer = get_highest_layer(state);
-    switch (layer) {
-        case _QW:
-            //rgblight_sethsv_noeeprom(HSV_BLUE);
-            //rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD + 0);
-            rgblight_set_layer_state(0, 1);
-            break;
-        case _LFT:
-            rgblight_sethsv_noeeprom(HSV_BLUE);
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD + 1);
-            break;
-        case _RGT:
-            //rgblight_sethsv_noeeprom(HSV_BLUE);
-            //rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD + 2);
-            rgblight_set_layer_state(1, 1);
-            break;
-        case _BTH:
-            rgblight_sethsv_noeeprom(HSV_BLUE);
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD + 3);
-            break;
-        case _GME:
-            rgblight_sethsv_noeeprom(HSV_RED);
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_BREATHING + 3);
-            break;
-        case _DVK:
-            rgblight_sethsv_noeeprom(HSV_GREEN);
-            rgblight_mode_noeeprom(RGBLIGHT_MODE_KNIGHT + 2);
-            break;
-    }
-    //rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
+    rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
+    rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
+    rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
+
     return state;
 }
