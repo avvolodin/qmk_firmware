@@ -14,6 +14,7 @@
 #define SERIAL_USART_TX_PIN A2
 #define SERIAL_USART_SPEED 921600
 
+#define RGBLED_NUM 14
 #define RGBLED_SPLIT  [7,7]
 #define WS2812_DI_PIN B10
 
