@@ -114,7 +114,8 @@ bool led_update_user(led_t led_state) {
     //rgblight_set_layer_state(3, led_state.caps_lock);
     if(led_state.caps_lock) {
         rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-        rgblight_sethsv_range(HSV_GREEN,0,13);
+        //rgblight_sethsv_range(HSV_GREEN,0,13);
+        rgblight_sethsv_noeeprom(HSV_GREEN);
     } else {
         rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
     }
