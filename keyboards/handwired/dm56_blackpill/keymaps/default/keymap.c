@@ -112,13 +112,12 @@ void keyboard_post_init_user(void) {
 
 bool led_update_user(led_t led_state) {
     //rgblight_set_layer_state(3, led_state.caps_lock);
-    rgblight_sethsv_at(HSV_WHITE, 0); // led 0
-    rgblight_sethsv_at(HSV_RED,   1); // led 1
-    rgblight_sethsv_at(HSV_GREEN, 2); // led 2
-    rgblight_sethsv_at(HSV_YELLOW, 7); // led 0
-    rgblight_sethsv_at(HSV_BLUE,   8); // led 1
-    rgblight_sethsv_at(HSV_GREEN, 9); // led 2
-
+    if(led_state.caps_lock) {
+        rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+        rgblight_sethsv_range(HSV_GREEN,0,13);
+    } else {
+        rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
+    }
     return true;
 }
 layer_state_t layer_state_set_user(layer_state_t state) {
