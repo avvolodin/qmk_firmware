@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BTH] = LAYOUT_manuform5x6(
       KC_TRNS, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,                                                    KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
       KC_NO,   SQWE,      SGME,   SDVK,  KC_NO,  KC_NO,                                                      KC_NO,  KC_MRWD,KC_MPLY, KC_MFFD, KC_NO,   KC_NO,
-      KC_NO,   RGB_TG,RGB_RMOD,RGB_MOD,  KC_NO,  KC_NO,                                                      KC_NO,  KC_VOLD,KC_MUTE, KC_VOLU, KC_NO,   KC_NO,
+      KC_NO,  RGB_TOG,RGB_RMOD,RGB_MOD,  KC_NO,  KC_NO,                                                      KC_NO,  KC_VOLD,KC_MUTE, KC_VOLU, KC_NO,   KC_NO,
       KC_NO,   KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,                                                      KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,
                            KC_LGUI,KC_LALT,                                                                                            KC_RALT, KC_RGUI,
                                                KC_TRNS,KC_TRNS,                                                    KC_TRNS,KC_TRNS,
