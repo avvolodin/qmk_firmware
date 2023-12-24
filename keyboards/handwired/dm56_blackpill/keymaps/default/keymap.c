@@ -122,7 +122,7 @@ bool led_update_user(led_t led_state) {
     return true;
 }
 layer_state_t layer_state_set_user(layer_state_t state) {
-    led_t leds = host_keyboard_led_state();
+    //led_t leds = host_keyboard_led_state();
     //if(leds.caps_lock){
     //    rgblight_set_layer_state(3, led_state.caps_lock);
     //
