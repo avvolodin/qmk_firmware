@@ -80,9 +80,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                    KC_TRNS,  KC_TRNS,       KC_TRNS,   KC_TRNS
         ),
     [_BTH] = LAYOUT_manuform5x6(
-      QK_RBT,  KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,                                                    KC_TRNS,KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, QK_RBT,
+      QK_RBT,RGB_M_P,RGB_M_B,RGB_M_R,RGB_M_SW,RGB_M_SN,                                                    RGB_M_K,RGB_M_X,RGB_M_G, RGB_M_T, RGB_M_TW, QK_RBT,
       KC_NO,   SQWE,      SGME,   SDVK,  KC_NO,  KC_NO,                                                      KC_NO,  KC_MPRV,KC_MPLY, KC_MNXT, KC_NO,   KC_NO,
-      KC_NO,  RGB_TOG,RGB_RMOD,RGB_MOD,  KC_NO,  KC_NO,                                                      KC_NO,  KC_VOLD,KC_MUTE, KC_VOLU, KC_NO,   KC_NO,
+      RGB_TOG, RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI,  KC_NO,                                                      KC_NO,  KC_VOLD,KC_MUTE, KC_VOLU, KC_NO,   KC_NO,
       KC_NO,   KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,                                                      KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,
                            KC_LGUI,KC_LALT,                                                                                            KC_RALT, KC_RGUI,
                                                KC_TRNS,KC_TRNS,                                                    KC_TRNS,KC_TRNS,
