@@ -14,8 +14,8 @@
   },
   "diode_direction": "ROW2COL",
   "rgblight": {
-    "led_count": 14,
-    "split_count": [7, 7],
+    "led_count": 18,
+    "split_count": [9, 9],
     "animations": {
       "breathing": true,
       "rainbow_mood": true,
