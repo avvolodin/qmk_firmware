@@ -15,19 +15,7 @@
   "diode_direction": "ROW2COL",
   "rgblight": {
     "led_count": 14,
-    "split_count": [7, 7],
-    "animations": {
-      "breathing": true,
-      "rainbow_mood": true,
-      "rainbow_swirl": true,
-      "snake": true,
-      "knight": true,
-      "christmas": true,
-      "static_gradient": true,
-      "rgb_test": true,
-      "alternating": true,
-      "twinkle": true
-    }
+    "split_count": [7, 7]
   },
   "ws2812": {
     "pin": "B10"

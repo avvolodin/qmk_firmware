@@ -22,6 +22,11 @@ enum layer_names {
 #define SDVK DF(_DVK)
 #define SGME DF(_GME)
 
+enum custom_keycodes {
+    AV_NEXT = SAFE_RANGE,
+    AV_PREV
+};
+
 
 
 //clang-format off
@@ -80,9 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                    KC_TRNS,  KC_TRNS,       KC_TRNS,   KC_TRNS
         ),
     [_BTH] = LAYOUT_manuform5x6(
-      QK_RBT,RGB_M_P,RGB_M_B,RGB_M_R,RGB_M_SW,RGB_M_SN,                                                    RGB_M_K,RGB_M_X,RGB_M_G, RGB_M_T, RGB_M_TW, QK_RBT,
+      QK_RBT, KC_TRNS, KC_TRNS,KC_TRNS,KC_TRNS,KC_TRNS,                                                    KC_TRNS,  KC_TRNS,KC_TRNS, KC_TRNS, KC_TRNS, QK_RBT,
       KC_NO,   SQWE,      SGME,   SDVK,  KC_NO,  KC_NO,                                                      KC_NO,  KC_MPRV,KC_MPLY, KC_MNXT, KC_NO,   KC_NO,
-      RGB_TOG, RGB_MOD,RGB_HUI,RGB_SAI,RGB_VAI,  KC_NO,                                                      KC_NO,  KC_VOLD,KC_MUTE, KC_VOLU, KC_NO,   KC_NO,
+      RGB_TOG, AV_NEXT,  KC_NO,  KC_NO,  KC_NO,  KC_NO,                                                      KC_NO,  KC_VOLD,KC_MUTE, KC_VOLU, KC_NO,   KC_NO,
       KC_NO,   KC_NO,    KC_NO,  KC_NO,  KC_NO,  KC_NO,                                                      KC_NO,  KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,
                            KC_LGUI,KC_LALT,                                                                                            KC_RALT, KC_RGUI,
                                                KC_TRNS,KC_TRNS,                                                    KC_TRNS,KC_TRNS,
@@ -106,43 +111,101 @@ void keyboard_post_init_user(void) {
     // Enable the LED layers
     //rgblight_layers = my_rgb_layers;
     rgblight_enable_noeeprom();
-    rgblight_sethsv_noeeprom(255, 255, 255);
-    rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
+    //rgblight_sethsv_noeeprom(255, 255, 255);
+    //rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
+    rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
+    rgblight_sethsv_noeeprom(HSV_RED);    
+}
+
+static int color = 1;
+
+void set_color_by_num(int num){
+    switch (num)
+    {
+        case 1: rgblight_sethsv_noeeprom(HSV_AZURE);
+        break;
+        case 2: rgblight_sethsv_noeeprom(HSV_BLUE);
+        break;
+        case 3: rgblight_sethsv_noeeprom(HSV_CHARTREUSE);
+        break;
+        case 4: rgblight_sethsv_noeeprom(HSV_CORAL);
+        break;
+        case 5: rgblight_sethsv_noeeprom(HSV_CYAN);
+        break;
+        case 6: rgblight_sethsv_noeeprom(HSV_GOLD);
+        break;
+        case 7: rgblight_sethsv_noeeprom(HSV_GOLDENROD);
+        break;
+        case 8: rgblight_sethsv_noeeprom(HSV_GREEN);
+        break;
+        case 9: rgblight_sethsv_noeeprom(HSV_MAGENTA);
+        break;
+        case 10: rgblight_sethsv_noeeprom(HSV_ORANGE);
+        break;
+        case 11: rgblight_sethsv_noeeprom(HSV_PINK);
+        break;
+        case 12: rgblight_sethsv_noeeprom(HSV_PURPLE);
+        break;
+        case 13: rgblight_sethsv_noeeprom(HSV_RED);
+        break;
+        case 14: rgblight_sethsv_noeeprom(HSV_SPRINGGREEN);
+        break;
+        case 15: rgblight_sethsv_noeeprom(HSV_TEAL);
+        break;
+        case 16: rgblight_sethsv_noeeprom(HSV_TURQUOISE);
+        break;
+        case 17: rgblight_sethsv_noeeprom(HSV_WHITE);
+        break;
+        case 18: rgblight_sethsv_noeeprom(HSV_YELLOW);
+        break;
+  
+    default:
+        break;
+    }
+}
+
+void next(void){
+    color++;
+    if(color>18) color = 1;
+    set_color_by_num(color);
+}
+void prev(void){
+    color--;
+    if(color<1) color = 18;
+    set_color_by_num(color);
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode)
+    {
+    case AV_NEXT:
+        next();
+        return false;
+    case AV_PREV:
+        prev();
+        return false;
+    default:
+        return true;
+        break;
+    }
 }
 
 bool led_update_user(led_t led_state) {
-    //rgblight_set_layer_state(3, led_state.caps_lock);
     if(led_state.caps_lock) {
         rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
-        //rgblight_sethsv_range(HSV_GREEN,0,13);
         rgblight_sethsv_noeeprom(HSV_GREEN);
     } else {
-        rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
+        set_color_by_num(color);
     }
     return true;
 }
 layer_state_t layer_state_set_user(layer_state_t state) {
-    //led_t leds = host_keyboard_led_state();
-    //if(leds.caps_lock){
-    //    rgblight_set_layer_state(3, led_state.caps_lock);
-    //
-    //}
-    //rgblight_set_layer_state(3, leds.caps_lock);
-    //rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
-    //rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
-    //rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
-    /*
-
-    */
 
     return state;
 }
 
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    //rgblight_set_layer_state(0, layer_state_cmp(state, _QW) || layer_state_cmp(state, _LFT) || layer_state_cmp(state, _RGT) || layer_state_cmp(state, _BTH));
-    //rgblight_set_layer_state(1, layer_state_cmp(state, _GME));
-    //rgblight_set_layer_state(2, layer_state_cmp(state, _DVK));
 
     return state;
 }
